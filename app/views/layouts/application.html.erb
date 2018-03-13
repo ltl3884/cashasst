@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cashasst</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container c-page">
+  <div style="width: 100%;overflow-x: auto;margin-top: 10px;">
+    <ul class="nav nav-tabs" role="tablist" style="min-width: max-content;">
+      <li>
+        <a href="/accounts">用户信息</a>
+      </li>
+      <li>
+        <a href="/tasks">任务列表</a>
+      </li>
+      <li>
+        <a href="/orders">订单列表</a>
+      </li>
+    </ul>
+    <div style="float:right"><div style="float:left;margin-right: 10px;"><%=current_user.name%></div><a href="/logout">退出</a></div>
+  </div>
+  <%= yield %>
+</div>
+
+</body>
+</html>

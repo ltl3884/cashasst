@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_id: 1
+  trigger_price: 9.99
+  trigger_ratio: 1
+  market_price: 9.99
+  change_num: 9.99
+  change_ratio: 1
+  change_type: 1
+
+two:
+  task_id: 1
+  trigger_price: 9.99
+  trigger_ratio: 1
+  market_price: 9.99
+  change_num: 9.99
+  change_ratio: 1
+  change_type: 1

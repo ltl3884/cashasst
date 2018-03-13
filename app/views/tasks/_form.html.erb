@@ -1,0 +1,35 @@
+<%= form_for(@task, html: {role: "form"}) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :交易对 %><br>
+    <%= f.select :symbol, symbols, {}, {class: 'form-control'} %>
+  </div>
+  <div class="form-group">
+    <%= f.label :状态 %><br>
+    <%= f.select :status, Task.statuses, {:selected => @task[:status]}, {class: 'form-control'} %>
+  </div>
+  <div class="form-group">
+    <%= f.label :价格基准 %><br>
+    <%= f.text_field :standard_price, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :用户 %><br>
+    <%= f.select :account_id, Account.all.map{|a| [a.name, a.id]}, {}, {class: 'form-control'} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit '提交', {class: 'btn btn-primary'} %>
+  </div>
+
+<% end %>

@@ -1,0 +1,65 @@
+<p class="text-success" id="notice"><%= notice %></p>
+
+<div class="pull-left">
+  <h3 class="c-page-title">订单列表</h3>
+  <%= form_tag orders_path, :method => :get, role: "form", class: "form-inline" do %>
+    <div class="form-group">
+      <%= label_tag 'symbol', '交易对' %> :
+      <%= select_tag "symbol", options_for_select(symbols, selected: params[:symbol]), include_blank: '请选择', class: 'form-control' %>
+      <%= label_tag 'start_date', '开始时间' %> :
+      <%= text_field_tag :start_date, params[:start_date], class: 'form-control' %>
+      <%= label_tag 'end_date', '结束时间' %> :
+      <%= text_field_tag :end_date, params[:end_date], class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= submit_tag "查询", {class: 'btn btn-primary'} %>
+    </div>
+  <% end %>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>时间</th>
+      <th>交易对</th>
+      <th>方向</th>
+      <th>价格</th>
+      <th>数量</th>
+      <th>委托总额</th>
+      <th>已成交</th>
+      <th>手续费</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at %></td>
+        <td><%= order.symbol %></td>
+        <td class="<%=color_type(order.type)%>"><%= order.type %></td>
+        <td><%= order.price %></td>
+        <td><%= order.amount %></td>
+        <td><%= order.total %></td>
+        <td><%= order.field_amount %></td>
+        <td><%= order.field_fees %><%=unit(order.type)%></td>
+        <td><%= order.state %></td>
+        <td class="c-operations c-word-keep-all">
+          <%= raw show_cancle(order.state)%>
+          <%= hidden_field_tag :order_id, order.order_id%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script type="text/javascript">
+  $(function() {
+    $("#cancel").click(function(){
+      var orderId = $(this).next().val()
+      $.post('/orders/'+orderId+'/cancel', function(data){
+          window.location.reload()
+      })
+    })
+  })
+</script>

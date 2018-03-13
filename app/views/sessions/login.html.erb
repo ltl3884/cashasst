@@ -1,0 +1,12 @@
+  <div class="row">
+    <p class="text-warning"><%=flash[:error]%></p>
+    <div class="span6 offset3">
+      <%= form_tag "/create_login_session" do %>
+      <%= label_tag "用户名" %>
+      <%= text_field_tag :name, params[:name] %>
+      <%= label_tag "密码" %>
+      <%= password_field_tag :password, params[:password] %>
+      <%= submit_tag "登录", :class => "login-button btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>

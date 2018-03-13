@@ -1,0 +1,44 @@
+<p class="text-success" id="notice"><%= notice %></p>
+
+<div class="pull-left">
+  <h3 class="c-page-title">任务列表</h3>
+  <%= form_tag tasks_path, :method => :get, role: "form", class: "form-inline" do %>
+    <div class="form-group">
+      <%= label_tag 'status', '状态' %> :
+      <%= select_tag "status", options_for_select(Task.statuses, params[:status]), include_blank: '请选择', class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= submit_tag "查询", {class: 'btn btn-primary'} %>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to '新增', new_task_path, class: 'c-btn-new pull-right' %>
+
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>交易对</th>
+      <th>价格</th>
+      <th>账号</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.symbol %></td>
+        <td><%= task.standard_price %></td>
+        <td><%= task.account.name %></td>
+        <td class="<%=color(task[:status])%>"><%= task.status %></td>
+        <td class="c-operations c-word-keep-all">
+          <%= link_to '编辑', edit_task_path(task) %>
+          <%= link_to '编辑策略', task_policies_path(task) %>
+          <%= link_to '删除', task, method: :delete, data: { confirm: '确认删除?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,9 @@
+development:
+  liutianlin_akey: test_akey
+  liutianlin_skey: test_skey
+  symbols: ['eosusdt', 'omgusdt']
+  trigger_price_float_ratio: 3
+  redis:
+    host: localhost
+    port: 6379
+    db: 0

@@ -1,0 +1,56 @@
+<%= form_for(@policy, {url: url, html: {role: "form"}}) do |f| %>
+  <% if @policy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@policy.errors.count, "error") %> prohibited this policy from being saved:</h2>
+
+      <ul>
+      <% @policy.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :触发比例 %>(%)<br>
+    <%= f.text_field :trigger_ratio, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :交易比例 %>(%)<br>
+    <%= f.text_field :change_ratio, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :交易类型 %><br>
+    <%= f.select :change_type, Policy.change_types, {:selected => @policy[:change_type]}, class: 'form-control' %>
+  </div>
+
+  <h5 class="page-header">以下为自动计算值</h5>
+
+  <div class="form-group">
+    <%= f.label :触发价区间 %><br>
+    上限:<%= f.text_field :trigger_price_upper, class: 'form-control' %>
+    下限:<%= f.text_field :trigger_price_lower, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :触发价浮动比例 %><br>
+    千分之<%= f.text_field :trigger_price_float_ratio, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :市场价 %><br>
+    <%= f.text_field :market_price, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :交易个数 %><br>
+    <%= f.text_field :change_num, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit '提交', {class: 'btn btn-primary'} %>
+  </div>
+  
+<% end %>

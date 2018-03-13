@@ -1,0 +1,27 @@
+<%= form_for(@account, html: {role: "form"}) do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= f.label :phone_num %><span class="start">*</span>
+    <%= f.text_field :phone_num, class: 'form-control narrow' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %><span class="start">*</span>
+    <%= f.text_field :email, class: 'form-control narrow' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit '提交', {class: 'btn btn-primary'} %>
+  </div>
+<% end %>
