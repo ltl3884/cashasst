@@ -27,6 +27,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem "sidekiq-cron", "~> 0.6.0"
 
+gem 'mina', "~> 0.3", group: :development
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
