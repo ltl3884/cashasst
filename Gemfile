@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'execjs'
 gem 'therubyracer'
+gem 'libv8', '3.16.14.19'
 gem "sidekiq-cron", "~> 0.6.0"
 
 gem 'mina', "~> 0.3", group: :development
