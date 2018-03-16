@@ -24,8 +24,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'execjs'
-gem 'therubyracer'
-gem 'libv8', '3.16.14.19'
+gem 'therubyracer', :platform => :ruby
+gem 'libv8', '3.16.14.19', :platforms => :ruby
 gem "sidekiq-cron", "~> 0.6.0"
 
 gem 'mina', "~> 0.3", group: :development
