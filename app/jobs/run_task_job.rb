@@ -9,7 +9,7 @@ class RunTaskJob < ActiveJob::Base
         price = current_price(task.account.name, task.symbol)
         return if price.blank?
 	    	policies.each do |policy|
-	    		if policy.trigger_price_upper > BigDecimal.new(price) and BigDecimal.new(price) > policy.trigger_price_lower
+          if policy.trigger_price_upper > BigDecimal.new(price.to_s) and BigDecimal.new(price.to_s) > policy.trigger_price_lower
 	    			notice = "当前价格为:#{price}, 在#{policy.trigger_price_lower}与#{policy.trigger_price_upper}之间, 下单"
             huobi_order = Huobi::Order.new(task.account.name)
             result = huobi_order.new_order(task.account.spot_id, task.symbol, side(policy[:change_type]), policy.market_price.to_f, policy.change_num.to_f)
