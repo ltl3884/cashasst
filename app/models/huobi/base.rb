@@ -44,7 +44,6 @@ class Huobi::Base
       end
       response = res.body
       result = JSON.parse(response)
-      puts result.to_json
       result
     rescue Net::OpenTimeout => e
       e = {"status" => "error", "err-msg" => "timeout"}

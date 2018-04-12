@@ -22,6 +22,8 @@ class RunTaskJob < ActiveJob::Base
               policy.save
               LOG.info "下单成功"
             end
+          else
+            LOG.info "当前价格为:#{price}, 不在#{policy.trigger_price_lower}与#{policy.trigger_price_upper}之间"
 	    		end
 	    	end
 	    else
