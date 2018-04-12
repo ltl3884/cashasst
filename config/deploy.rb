@@ -6,6 +6,8 @@ require 'mina/git'
 
 require 'mina/rvm'
 
+require 'mina_sidekiq/tasks'
+
 set :domain, '118.24.14.236'
 
 set :deploy_to, '/opt/backend/cashasst'
@@ -20,7 +22,7 @@ set :user, 'ubuntu'
 
 task :environment do
 
-	queue! %[source ~/.bash_profile && rvm use default]
+	queue! %[source ~/.bash_profile && rvm use 2.3.4]
 
 end
 
@@ -33,6 +35,10 @@ task :setup => :environment do
 	queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
 
 	queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config"]
+
+	queue! %[mkdir -p "#{deploy_to}/#{shared_path}/pids"]
+
+	queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/pids"]
 
 	queue! %[mkdir -p "#{deploy_to}/#{shared_path}/shared"]
 
@@ -60,6 +66,8 @@ task :deploy => :environment do
 
 		invoke :'deploy:link_shared_paths'
 
+		queue! %[rvm use 2.3.4@cashasst --create]
+
 		invoke :'bundle:install'
 
 		invoke :'rails:db_migrate'
@@ -67,8 +75,6 @@ task :deploy => :environment do
     invoke :'rails:assets_precompile'
 
     invoke :'deploy:cleanup'
-
-    #invoke :start
 
 		to :launch do
 
@@ -84,8 +90,24 @@ end
 
 desc "start sidekiq"
 
-task :start => :environment do
+task :sidekiq_start => :environment do
 
-	invoke :'sidekiq:restart'
+	invoke :'sidekiq:start'
+
+end
+
+desc "stop sidekiq"
+
+task :sidekiq_stop => :environment do
+
+	invoke :'sidekiq:stop'
+
+end
+
+desc "log sidekiq"
+
+task :sidekiq_log => :environment do
+
+	invoke :'sidekiq:log'
 
 end

@@ -1,0 +1,3 @@
+bundle exec sidekiq -d -e production  -C /opt/backend/cashasst/current/config/sidekiq.yml -i 0 -P /opt/backend/cashasst/shared/pids/sidekiq.pid -L /opt/backend/cashasst/current/log/sidekiq.log
+
+bundle exec sidekiqctl stop /opt/backend/cashasst/shared/pids/sidekiq.pid 0

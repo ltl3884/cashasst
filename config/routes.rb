@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
   resources :tasks do
     resources :policies
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   match '/login', to: 'sessions#login', via: 'get'
   match '/create_login_session', to: 'sessions#create_login_session', via: 'post'
   match '/logout', to: 'sessions#destroy', via: 'get'
-
+  mount Sidekiq::Web => '/sidekiq'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
