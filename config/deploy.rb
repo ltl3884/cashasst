@@ -88,13 +88,13 @@ task :deploy => :environment do
 
 end
 
-desc "start sidekiq"
+# desc "start sidekiq"
 
-task :sidekiq_start => :environment do
+# task :sidekiq_start => :environment do
 
-	invoke :'sidekiq:start'
+# 	invoke :'sidekiq:start'
 
-end
+# end
 
 desc "stop sidekiq"
 
