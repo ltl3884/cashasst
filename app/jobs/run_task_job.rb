@@ -7,6 +7,7 @@ class RunTaskJob < ActiveJob::Base
     	policies = task.policies.not_triggered
     	if policies.present?
         price = current_price(task.account.name, task.symbol)
+        return if price.blank?
 	    	policies.each do |policy|
 	    		if policy.trigger_price_upper > BigDecimal.new(price) and BigDecimal.new(price) > policy.trigger_price_lower
 	    			notice = "当前价格为:#{price}, 在#{policy.trigger_price_lower}与#{policy.trigger_price_upper}之间, 下单"
@@ -34,7 +35,9 @@ class RunTaskJob < ActiveJob::Base
   	market = Huobi::Market.new(account_name)
   	data = market.trade_detail(symbol)
   	if data["status"] == 'ok'
-  		return data["tick"]["data"][0]["price"]
+      price = data["tick"]["data"][0]["price"]
+      LOG.info "当前#{symbol}价钱为#{price}"
+  		return price
   	end
   	return
   end
