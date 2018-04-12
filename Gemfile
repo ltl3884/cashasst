@@ -29,6 +29,7 @@ gem 'libv8', '3.16.14.19', :platforms => :ruby
 gem "sidekiq-cron", "~> 0.6.0"
 
 gem 'mina', "~> 0.3", group: :development
+gem 'mina-sidekiq', "~> 0.4", group: :development
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
