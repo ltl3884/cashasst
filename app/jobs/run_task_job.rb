@@ -27,7 +27,7 @@ class RunTaskJob < ActiveJob::Base
 	    		end
 	    	end
 	    else
-	    	LOG.info "获取#{task.symbol}有误"
+	    	LOG.info "无策略可执行"
     	end
     end
   end
@@ -41,7 +41,6 @@ class RunTaskJob < ActiveJob::Base
       LOG.info "当前#{symbol}价钱为#{price}"
   		return price
   	end
-  	return
   end
 
   def side(change_type)

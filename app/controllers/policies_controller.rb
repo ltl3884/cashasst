@@ -25,12 +25,9 @@ class PoliciesController < ApplicationController
   # POST /policies
   # POST /policies.json
   def create
-    #@policy = Policy.new(policy_params)
-    #@policy.task_id = params[:task_id]
-
     @policy = Policy.new(policy_params)
     @policy.task_id = params[:task_id]
-    @policy.generate_policy(policy_params)
+    @policy.calc_policy(policy_params)
     respond_to do |format|
       if @policy.save
         format.html { redirect_to task_policies_path(@policy.task), notice: '策略创建成功' }
@@ -45,9 +42,10 @@ class PoliciesController < ApplicationController
   # PATCH/PUT /policies/1
   # PATCH/PUT /policies/1.json
   def update
+    @policy.calc_policy(policy_params)
+    @policy.task_id = params[:task_id]
     respond_to do |format|
-      @policy.task_id = params[:task_id]
-      if @policy.update(policy_params)
+      if @policy.save
         format.html { redirect_to task_policies_path(@policy.task), notice: '策略更新成功' }
         format.json { render :show, status: :ok, location: @policy }
       else
@@ -78,5 +76,9 @@ class PoliciesController < ApplicationController
       param = params.require(:policy).permit(:trigger_price_upper, :trigger_price_lower, :trigger_price_float_ratio, :trigger_ratio, :market_price, :change_num, :change_ratio, :change_type, :task_id)
       param[:change_type] = param[:change_type].to_i
       param
+    end
+
+    def check_data
+      
     end
 end

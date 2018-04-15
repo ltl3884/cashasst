@@ -7,7 +7,7 @@ class Policy < ActiveRecord::Base
 
 	scope :not_triggered, -> { where(triggered: Policy.triggereds['未触发']).order("id") }
 
-	def generate_policy(policy_params)
+	def calc_policy(policy_params)
 		self.trigger_ratio = policy_params[:trigger_ratio]
 		price = BigDecimal.new(task.standard_price) * BigDecimal.new(trigger_ratio) / BigDecimal.new(100)
 		self.trigger_price_float_ratio ||= get_trigger_price_float_ratio

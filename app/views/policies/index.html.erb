@@ -9,11 +9,11 @@
   <thead>
     <tr>
       <th>触发价</th>
-      <th>触发比例</th>
       <th>市场价</th>
       <th>交易个数</th>
       <th>交易比例</th>
       <th>交易类型</th>
+      <th>是否触发过</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -22,11 +22,11 @@
     <% @policies.each do |policy| %>
       <tr>
         <td><%= policy.trigger_price_lower %>-<%= policy.trigger_price_upper %></td>
-        <td><%= policy.trigger_ratio %></td>
         <td><%= policy.market_price %></td>
         <td><%= policy.change_num %></td>
         <td><%= policy.change_ratio %></td>
         <td class="<%=color(policy[:change_type])%>"><%= policy.change_type %></td>
+        <td class="<%=color(policy[:change_type])%>"><%= policy.triggered %></td>
         <td class="c-operations c-word-keep-all">
           <%= link_to '编辑', edit_task_policy_path(policy.task, policy) %>
           <%= link_to '删除', task_policy_path(policy.task, policy), method: :delete, data: { confirm: '确认删除?' } %>
