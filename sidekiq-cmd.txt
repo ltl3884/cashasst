@@ -2,5 +2,4 @@ bundle exec sidekiq -d -e production -P /opt/backend/cashasst/shared/pids/sideki
 
 bundle exec sidekiqctl stop /opt/backend/cashasst/shared/pids/sidekiq.pid
 
-
 bundle exec sidekiq -d -P tmp/sidekiq.pid -L log/sidekiq.log
