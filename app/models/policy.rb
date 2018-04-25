@@ -16,7 +16,7 @@ class Policy < ActiveRecord::Base
 		self.market_price = price
 		self.change_ratio = policy_params[:change_ratio]
 		num = get_currency_num(self.task)
-		self.change_num = BigDecimal.new(num) * BigDecimal.new(self.change_ratio) / BigDecimal.new(100)
+		self.change_num = policy_params[:change_num].to_i.zero? ? BigDecimal.new(num) * BigDecimal.new(self.change_ratio) / BigDecimal.new(100) : policy_params[:change_num]
 		self.change_type = policy_params[:change_type]
 		self
 	end
