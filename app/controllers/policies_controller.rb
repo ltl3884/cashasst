@@ -73,7 +73,7 @@ class PoliciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def policy_params
-      param = params.require(:policy).permit(:trigger_price_upper, :trigger_price_lower, :trigger_price_float_ratio, :trigger_ratio, :market_price, :change_num, :change_ratio, :change_type, :task_id)
+      param = params.require(:policy).permit(:trigger_price_upper, :trigger_price_lower, :trigger_price_float_ratio, :trigger_ratio, :market_price, :change_num, :change_ratio, :change_type, :task_id, :is_ma5)
       param[:change_type] = param[:change_type].to_i
       param
     end

@@ -2,3 +2,7 @@ run_task_job:
   cron: "*/15 * * * * *"
   class: "RunTaskJob"
   queue: default
+update_ma5_job:
+  cron: "* */1 * * * *"
+  class: "UpdateMa5Job"
+  queue: default

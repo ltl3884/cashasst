@@ -13,6 +13,7 @@
       <th>交易个数</th>
       <th>交易比例</th>
       <th>交易类型</th>
+      <th>是否自动设置ma5</th>
       <th>是否触发过</th>
       <th>操作</th>
     </tr>
@@ -26,6 +27,7 @@
         <td><%= policy.change_num %></td>
         <td><%= policy.change_ratio %></td>
         <td class="<%=color(policy[:change_type])%>"><%= policy.change_type %></td>
+        <td><%= policy.is_ma5 %></td>
         <td class="<%=color(policy[:triggered])%>"><%= policy.triggered %></td>
         <td class="c-operations c-word-keep-all">
           <%= link_to '编辑', edit_task_policy_path(policy.task, policy) %>
