@@ -5,7 +5,7 @@ class UpdateMa5Job < ActiveJob::Base
 	def perform(*args)
 		Task.running.each do |task|
 			task.policies.not_triggered.each do |policy|
-				if policy.is_ma5 == 1
+				if policy[:is_ma5] == 1
 					price = ma5_price(policy.task)
 					policy.market_price = price
 					policy.trigger_price_upper = price + price * BigDecimal.new(policy.trigger_price_float_ratio) / BigDecimal.new(1000)
