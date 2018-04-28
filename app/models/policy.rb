@@ -24,7 +24,7 @@ class Policy < ActiveRecord::Base
 		num = get_currency_num(self.task)
 		self.change_num = policy_params[:change_num].to_i.zero? ? BigDecimal.new(num) * BigDecimal.new(self.change_ratio) / BigDecimal.new(100) : policy_params[:change_num]
 		self.change_type = policy_params[:change_type]
-		self.is_ma5 = policy_params[:is_ma5]
+		self.is_ma5 = policy_params[:is_ma5].to_i
 		self
 	end
 
