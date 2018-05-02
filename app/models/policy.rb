@@ -11,7 +11,7 @@ class Policy < ActiveRecord::Base
 	def calc_policy(policy_params)
 		self.trigger_ratio = policy_params[:trigger_ratio]
 		price = 0
-		if policy_params[:is_ma5] == 1
+		if policy_params[:is_ma5].to_i == 0
 			price = BigDecimal.new(task.standard_price) * BigDecimal.new(trigger_ratio) / BigDecimal.new(100)
 		else
 			price = ma5_price(self.task)
@@ -24,7 +24,7 @@ class Policy < ActiveRecord::Base
 		num = get_currency_num(self.task)
 		self.change_num = policy_params[:change_num].to_i.zero? ? BigDecimal.new(num) * BigDecimal.new(self.change_ratio) / BigDecimal.new(100) : policy_params[:change_num]
 		self.change_type = policy_params[:change_type]
-		self.is_ma5 = policy_params[:is_ma5]
+		self.is_ma5 = policy_params[:is_ma5].to_i
 		self
 	end
 
