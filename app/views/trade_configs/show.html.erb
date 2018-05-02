@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Symbol:</strong>
+  <%= @trade_config.symbol %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @trade_config.size %>
+</p>
+
+<p>
+  <strong>Ratio:</strong>
+  <%= @trade_config.ratio %>
+</p>
+
+<%= link_to 'Edit', edit_trade_config_path(@trade_config) %> |
+<%= link_to 'Back', trade_configs_path %>

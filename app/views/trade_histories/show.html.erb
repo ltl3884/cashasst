@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Symbol:</strong>
+  <%= @trade_history.symbol %>
+</p>
+
+<p>
+  <strong>Sell ratio:</strong>
+  <%= @trade_history.sell_ratio %>
+</p>
+
+<p>
+  <strong>Buy ratio:</strong>
+  <%= @trade_history.buy_ratio %>
+</p>
+
+<%= link_to 'Edit', edit_trade_history_path(@trade_history) %> |
+<%= link_to 'Back', trade_histories_path %>

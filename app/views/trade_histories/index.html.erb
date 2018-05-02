@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="pull-left">
+  <h3 class="c-page-title">交易数据</h3>
+  <%= form_tag trade_histories_path, :method => :get, role: "form", class: "form-inline" do %>
+    <div class="form-group">
+      <%= label_tag 'symbol', '交易对' %> :
+      <%= text_field_tag :symbol %>
+    </div>
+    <div class="form-group">
+      <%= submit_tag "查询", {class: 'btn btn-primary'} %>
+    </div>
+  <% end %>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>交易对</th>
+      <th>卖比例</th>
+      <th>买比例</th>
+      <th>时间</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trade_histories.each do |trade_history| %>
+      <tr>
+        <td><%= trade_history.symbol %></td>
+        <td><%= trade_history.sell_ratio %></td>
+        <td><%= trade_history.buy_ratio %></td>
+        <td><%= trade_history.created_at.to_s(:db) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,32 @@
+<p class="text-success" id="notice"><%= notice %></p>
+
+<div class="pull-left">
+  <h3 class="c-page-title">交易数据</h3>
+</div>
+
+<%= link_to '新增', new_trade_config_path, class: 'c-btn-new pull-right' %>
+
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>交易对</th>
+      <th>数量</th>
+      <th>预警比率</th>
+      <th colspan="2">操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trade_configs.each do |trade_config| %>
+      <tr>
+        <td><%= trade_config.symbol %></td>
+        <td><%= trade_config.size %></td>
+        <td><%= trade_config.ratio %></td>
+        <td><%= link_to '编辑', edit_trade_config_path(trade_config) %></td>
+        <td><%= link_to '删除', trade_config, method: :delete, data: { confirm: '确认删除?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

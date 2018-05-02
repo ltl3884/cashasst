@@ -1,5 +1,7 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+  resources :trade_histories
+  resources :trade_configs
   resources :tasks do
     resources :policies
   end

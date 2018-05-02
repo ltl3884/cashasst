@@ -1,0 +1,29 @@
+<%= form_for(@trade_config, html: {role: "form"}) do |f| %>
+  <% if @trade_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trade_config.errors.count, "error") %> prohibited this trade_config from being saved:</h2>
+
+      <ul>
+      <% @trade_config.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :交易对 %><br>
+    <%= f.text_field :symbol, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :数量 %><br>
+    <%= f.number_field :size, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :预警比率 %><br>
+    <%= f.number_field :ratio, class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= f.submit '提交', {class: 'btn btn-primary'} %>
+  </div>
+<% end %>

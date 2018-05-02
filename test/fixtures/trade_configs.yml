@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  symbol: MyString
+  size: 1
+  ratio: 1
+
+two:
+  symbol: MyString
+  size: 1
+  ratio: 1

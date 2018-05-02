@@ -14,4 +14,11 @@ class Huobi::Market < Huobi::Base
     access_huobi(path, params, request_method)
   end
 
+  def history_trade(symbol, size)
+    path = "/market/history/trade"
+    request_method = "GET"
+    params ={"symbol" => symbol,"size" => size}
+    access_huobi(path, params, request_method)
+  end
+
 end
