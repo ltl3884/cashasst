@@ -21,7 +21,7 @@ class Huobi::Order < Huobi::Base
     params ={
       "account-id" => account_id,
       "amount" => count,
-      "price" => price,
+      #"price" => price,
       "source" => "api",
       "symbol" => symbol,
       "type" => side
