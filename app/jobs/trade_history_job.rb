@@ -17,6 +17,7 @@ class TradeHistoryJob < ActiveJob::Base
 				h.sell_ratio = ss(sell, total)
 				h.buy_ratio = ss(buy, total)
 				h.save
+				LOG.info "创建#{tc.symbol}交易数据"
 			else
 			end
 		end
