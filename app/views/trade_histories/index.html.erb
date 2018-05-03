@@ -19,6 +19,7 @@
       <th>交易对</th>
       <th>卖比例</th>
       <th>买比例</th>
+      <th>交易量</th>
       <th>时间</th>
     </tr>
   </thead>
@@ -29,6 +30,7 @@
         <td><%= trade_history.symbol %></td>
         <td><%= trade_history.sell_ratio %></td>
         <td><%= trade_history.buy_ratio %></td>
+        <td><%= trade_history.vol %></td>
         <td><%= trade_history.created_at.to_s(:db) %></td>
       </tr>
     <% end %>
