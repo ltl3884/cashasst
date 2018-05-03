@@ -31,7 +31,7 @@
         <td><%= trade_history.sell_ratio %></td>
         <td><%= trade_history.buy_ratio %></td>
         <td><%= trade_history.vol %></td>
-        <td><%= trade_history.created_at.to_s(:db) %></td>
+        <td><%= trade_history.created_at.localtime.to_s(:db) %></td>
       </tr>
     <% end %>
   </tbody>
