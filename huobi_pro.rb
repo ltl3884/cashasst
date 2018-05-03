@@ -282,8 +282,8 @@ huobi_pro = HuobiPro.new(access_key,secret_key,account_id)
 # p huobi_pro.balances
 # p huobi_pro.symbols
 # p huobi_pro.depth('ethbtc')
-# p huobi_pro.history_kline('eosusdt',"1day", 5).to_json
+p huobi_pro.history_kline('btmusdt',"15min", 30)["data"].map{|d| d["vol"]}
 # p huobi_pro.history_kline('eosusdt',"1day", 5)["data"].map{|d| d["close"]}.reduce(:+)/5
 # p huobi_pro.merged('ethbtc')
 # p huobi_pro.trade_detail('eosusdt').to_json
-p huobi_pro.history_trade('eosusdt', 100)["data"].map{|d| d["data"][0]["direction"]}
+# p huobi_pro.history_trade('eosusdt', 100)["data"].map{|d| d["data"][0]["direction"]}

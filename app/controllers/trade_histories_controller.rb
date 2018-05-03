@@ -4,7 +4,7 @@ class TradeHistoriesController < ApplicationController
   # GET /trade_histories
   # GET /trade_histories.json
   def index
-    @trade_histories = TradeHistory.where(symbol: params[:symbol])
+    @trade_histories = TradeHistory.where(symbol: params[:symbol]).order("created_at desc")
   end
 
   # GET /trade_histories/1
