@@ -16,7 +16,7 @@ class Policy < ActiveRecord::Base
 		else
 			price = ma5_price(self.task)
 		end
-		self.trigger_price_float_ratio = params[:trigger_price_float_ratio] || get_trigger_price_float_ratio
+		self.trigger_price_float_ratio = policy_params[:trigger_price_float_ratio] || get_trigger_price_float_ratio
 		self.trigger_price_upper = price + price * BigDecimal.new(self.trigger_price_float_ratio) / BigDecimal.new(1000)
 		self.trigger_price_lower = price - price * BigDecimal.new(self.trigger_price_float_ratio) / BigDecimal.new(1000)
 		self.market_price = price
